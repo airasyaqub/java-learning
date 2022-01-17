@@ -269,7 +269,7 @@ public class Main {
     }
 
     private void printingSomething() {
-        System.out.println("Java sucks !");
+        System.out.println("Java is fast !");
     }
 
 
