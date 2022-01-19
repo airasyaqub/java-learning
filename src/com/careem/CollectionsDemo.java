@@ -66,7 +66,7 @@ public class CollectionsDemo {
         // obj.createArrayList();
 
 
-        // We use list when we need to work with data in LIFO manner, and you want to be able to discard every
+        // We use stack when we need to work with data in LIFO manner, and you want to be able to discard every
         // item you popped out of the stack after processing it.
         // obj.createStack();
 
