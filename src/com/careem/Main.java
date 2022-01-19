@@ -207,7 +207,7 @@ public class Main {
         // will not be initialized as abstract class cannot be initialized!
         // Automobile car = new Automobile("660cc", 4);
 
-        /*
+
         Car elantra = new Car("Hyundai",
                             "Red",
                             2019,
@@ -224,8 +224,7 @@ public class Main {
         Automobile mira = new Car("sedan", 4, "2000cc");
         mira.giveInfo();
 
-
-        System.out.println(elantra.isEcoFriendly("hybrid"));
+        System.out.println(elantra.checkCarEco().isEcoFriendly("hybrid"));
         System.out.println("car score is "+elantra.getConditionScore("good"));
         System.out.println(elantra.makeSound("vroom vroom"));
         System.out.println(elantra.makeSound("vroom vroom vroom"));
@@ -234,7 +233,7 @@ public class Main {
         User john = new User("John", 26, "IT");
         System.out.println(john.getIntro());
         john.walk();
-        john.talk();*/
+        john.talk();
 
 
         // -------------------------------------------------------------------------------------->
