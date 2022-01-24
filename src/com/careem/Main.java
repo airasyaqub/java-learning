@@ -4,6 +4,7 @@ import com.fishry.User;
 
 import java.io.*;
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Scanner;
@@ -52,7 +53,16 @@ public class Main {
         // ------------------------------------------------------------------------------------>
 
 
-        // strings in java
+        // STRINGS in java
+        // java strings are stored in string pool of heap memory area. One pool can have multiple strings.
+        // When we create string object, the object name (variable) will be stored/created in
+        // execution context (stack portion of memory) & the value we are assigning to that variable
+        // will be stored in string pool (portion of heap memory).
+
+
+        // STRINGBUFFER is used to create mutable string. It is also thread safe.
+        // STRINGBUILDER is not thread safe so it is faster
+
         /* String myStr = "   John is a very grumpy guy  ";
         System.out.println(myStr.trim()); */
 
@@ -208,7 +218,7 @@ public class Main {
         // Automobile car = new Automobile("660cc", 4);
 
 
-        Car elantra = new Car("Hyundai",
+        /*Car elantra = new Car("Hyundai",
                             "Red",
                             2019,
                             "Elantra",
@@ -224,6 +234,7 @@ public class Main {
         Automobile mira = new Car("sedan", 4, "2000cc");
         mira.giveInfo();
 
+        // interface method returning an interface
         System.out.println(elantra.checkCarEco().isEcoFriendly("hybrid"));
         System.out.println("car score is "+elantra.getConditionScore("good"));
         System.out.println(elantra.makeSound("vroom vroom"));
@@ -233,7 +244,7 @@ public class Main {
         User john = new User("John", 26, "IT");
         System.out.println(john.getIntro());
         john.walk();
-        john.talk();
+        john.talk();*/
 
 
         // -------------------------------------------------------------------------------------->
@@ -254,12 +265,34 @@ public class Main {
         // generics in java
         // https://www.geeksforgeeks.org/generics-in-java/
 
+
+        // -------------------------------------------------------------------------------------->
+
+        // Default constructor: A constructor which is implicitly put by JVM without any params
+        // even if we don't mention it in our class. It is used to provide default values
+        // to attribute depending on type.
+
+        // constructor chaining: 3:16:00 of https://www.youtube.com/watch?v=hBh_CC5y8-s&t=35823s
+
+        // static variables are stored in a space known as permanent generation memory.
+
+
+        // -------------------------------------------------------------------------------------->
+
+
+        // single inheritance, Hierarchical inheritance, multilevel inheritance
+
+        // When you have a class as property in a class it's a HAS-A relationship. EMPLOYEE has a NAME.
+
     }
 
 
 
 
 
+    public <T> ArrayList<T> makeArray(int size) {
+        return new ArrayList<T>(size);
+    }
 
     private void greaterThanTwo(int[] arr) {
         IntStream res =  Arrays.stream(arr).filter(e -> e>2);

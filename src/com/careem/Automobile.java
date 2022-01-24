@@ -33,7 +33,7 @@ public abstract class Automobile implements carCondition {
 
 
     /*@Override
-    public String isEcoFriendly(String engineType) {
+    public String isEcoFriendly(String engineType) {`
         return Objects.equals(engineType, "hybrid") ? "car is eco friendly" : "car is not eco friendly";
     }*/
 
