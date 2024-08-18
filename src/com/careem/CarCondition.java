@@ -2,7 +2,7 @@ package com.careem;
 
 import java.util.Objects;
 
-public interface carCondition {
+public interface CarCondition extends IsEco {
 
     int getConditionScore(String condition);
 
@@ -10,6 +10,7 @@ public interface carCondition {
         System.out.println("Welcome to carCondition class");
     }
 
+    /*
     default isEco checkCarEco() {
         return new isEco() {
             @Override
@@ -18,5 +19,5 @@ public interface carCondition {
             }
         };
     }
-
+    */
 }

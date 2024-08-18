@@ -37,8 +37,12 @@ public class Car extends Automobile {
 
     @Override
     String makeSound(String sound) {
-        return "car sound is "+sound;
+        return sound;
     }
-    
+
+
+    public static void staticMethod() {
+        System.out.println("Hey I am static method used in MethodReference class");
+    }
 
 }

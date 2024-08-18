@@ -1,7 +1,10 @@
 package com.careem;
 
+import javax.swing.*;
 import java.util.*;
 
+import java.lang.reflect.*;
+import java.util.function.BiFunction;
 
 
 // https://www.javatpoint.com/collections-in-java
@@ -10,10 +13,25 @@ import java.util.*;
 class Student implements Comparable<Student> {
     String name;
     Integer roll;
+    Integer age;
+    Integer grades;
+
 
     public Student(String name, Integer roll) {
+        this.roll = roll;
+        this.name = name;
+    }
+
+    public Student(String name, Integer roll, Integer age) {
         this.name = name;
         this.roll = roll;
+        this.age = age;
+    }
+
+    public Student(Integer grades, String name, Integer roll) {
+        this.name = name;
+        this.roll = roll;
+        this.grades = grades;
     }
 
 
@@ -28,8 +46,7 @@ class Student implements Comparable<Student> {
 
     @Override
     public boolean equals(Object o) {
-        System.out.println(o);
-        System.out.println(this == o);
+        System.out.println("in equal");
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Student student = (Student) o;
@@ -38,6 +55,7 @@ class Student implements Comparable<Student> {
 
     @Override
     public int hashCode() {
+        System.out.println("in hash");
         return Objects.hash(roll);
     }
 
@@ -46,9 +64,9 @@ class Student implements Comparable<Student> {
         // return this.roll.compareTo(that.roll);
 
         if (this.roll < that.roll) {
-            return -1;
-        } else if (this.roll > that.roll) {
             return 1;
+        } else if (this.roll > that.roll) {
+            return -1;
         } else {
             return 0;
         }
@@ -58,12 +76,24 @@ class Student implements Comparable<Student> {
 
 public class CollectionsDemo {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+
+
+        Class<?> cl = Class.forName("com.careem.Student");
+        Constructor<?> cons = cl.getConstructor(String.class, Integer.class);
+        // Constructor<?> con2 = cl.getConstructor(Integer.class, String.class, Integer.class);
+
+        Object o = cons.newInstance("jLabel", 26);
+        // Object o2 = con2.newInstance(112, "JLabel", 26);
+
+        System.out.println(o);
+        // System.out.println(o2);
+
         CollectionsDemo obj = new CollectionsDemo();
 
 
         // We use list when we need to store insertion order maintained collection. List have indexed based methods
-        // obj.createArrayList();
+        obj.createArrayList();
 
 
         // We use stack when we need to work with data in LIFO manner, and you want to be able to discard every
@@ -87,6 +117,19 @@ public class CollectionsDemo {
 
 
         // Other collections store values while in map we store key value pair.
+        // Hash map has a number of "buckets" which it uses to store key-value pairs in.When you put a key-value pair into the map,
+        // the hashmap will look at the hash code of the key, set the bucket number with that hash-key
+        // and store the pair in that bucket.
+
+        // Override only Equal.
+        // If you don't override hashcode, hashmap will put every key-value in different bucket & if you try to
+        // get key-value pair of same key, it will be null because that key-value pair hash is different from any bucket present ( as no hashcode implementation ).
+
+        // Override only Hashcode.
+        // If you don't override Equal, hashmap will first calculate hashcode of every key-value and put
+        // same hashcode key-value key in same bucket BUT catch is if you try to
+        // get key-value pair it will go to the bucket, will try to find equal objects but as there
+        // is no EQUAL implementation so as default behaviour hashmap will consider every object as different and returns null.
         // obj.createMap();
 
 
@@ -95,21 +138,16 @@ public class CollectionsDemo {
         //  which is not implementing COMPARABLE interface we will use COMPARATOR. Second situation
         //  is when we need to change logic of comparable dynamically ( meaning comparison
         // on basis of different properties ) you need to make a COMPARATOR.
-        obj.doCustomComparable();
-
-
-
-
+        // obj.doCustomComparable();
 
     }
-
     private void createArrayList(){
 
         /*for (int i = 0; i < 10; i++) {
             arrayList.add((int)(Math.random() * 10));
         }*/
 
-        ArrayList<String> arrayList = new ArrayList<String>();
+        ArrayList<String> arrayList = new ArrayList<String>() ;
         arrayList.add("airas");
         arrayList.add("adeel");
         arrayList.add(1, "naveed");
@@ -264,9 +302,8 @@ public class CollectionsDemo {
 
         // TreeMap will sort wrt keys.
 
-        // Map<String, Integer> myMap = new HashMap<>();
-        Map<String, Integer> myMap = new TreeMap<>();
-
+        Map<String, Integer> myMap = new HashMap<>();
+      // Map<String, Integer> myMap = new TreeMap<>();
         myMap.put("airas", 26);
         myMap.put("ahmed", 28);
         myMap.put("osama", 29);
@@ -285,6 +322,26 @@ public class CollectionsDemo {
             System.out.println("key: "+key);
         }
 
+        myMap.forEach((key, value) -> {
+            System.out.println(key);
+            System.out.println(value);
+        });
+
+
+
+//        myMap.put(new Student("vishal", 23), 1);
+//        myMap.put(new Student("vaibhav", 82), 2);
+//        myMap.put(new Student("airas", 23), 3);
+//        myMap.put(new Student("zaka", 27), 4);
+//
+//
+//        Student temp = new Student("booo", 23);
+//
+//        System.out.println(myMap);
+//
+//        System.out.println(myMap.get(new Student("vaibhav", 27)));
+//
+//        System.out.println(myMap.containsKey(temp));
         
 
     }
@@ -298,6 +355,11 @@ public class CollectionsDemo {
         arrayList.add(new Student("zaka", 41));
         arrayList.add(new Student("airas", 12));
         arrayList.add(new Student("waqar", 63));
+
+        Collections.sort(arrayList);
+
+        System.out.println(arrayList);
+
 
         Collections.sort(arrayList, new Comparator<Student>() {
             @Override

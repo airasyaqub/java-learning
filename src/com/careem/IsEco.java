@@ -1,6 +1,6 @@
 package com.careem;
 
-public interface isEco {
+public interface IsEco {
 
     String isEcoFriendly(String engineType);
 

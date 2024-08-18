@@ -24,6 +24,7 @@ public class Main {
     public static void main(String[] args) {
 
 
+
         /*
         // primitive data types
         byte myByte = 127; // 1 byte	Stores whole numbers from -128 to 127
@@ -215,37 +216,39 @@ public class Main {
 
 
         // will not be initialized as abstract class cannot be initialized!
-        // Automobile car = new Automobile("660cc", 4);
+        // Automobile car = new Automobile("Hyundai", "Red", 2019, "Elantra");
 
 
-        /*Car elantra = new Car("Hyundai",
+        // An object can have interface type. If variable is declared to be the type of interface,
+        // its value can be equal to any object that is instantiated from any class that implements the interface.
+        CarCondition elantra = new Car("Hyundai",
                             "Red",
                             2019,
                             "Elantra",
                             "sedan",
                             4,
                             "2000cc");
-        elantra.giveInfo();
+        elantra.getConditionScore("good");
+        // ((Car) elantra).giveInfo();
+        ((Car) elantra).driftTheCar();
 
 
         // method over-riding is run time polymorphism, here giveInfo of car will be called even we have
         // assigned mira Automobile type.During compile time JVM wouldn't have knowledge of which giveInfo will be called
-
-        Automobile mira = new Car("sedan", 4, "2000cc");
+        /*Automobile mira = new Car("sedan", 4, "2000cc");
         mira.giveInfo();
 
         // interface method returning an interface
         System.out.println(elantra.checkCarEco().isEcoFriendly("hybrid"));
         System.out.println("car score is "+elantra.getConditionScore("good"));
-        System.out.println(elantra.makeSound("vroom vroom"));
-        System.out.println(elantra.makeSound("vroom vroom vroom"));
+        System.out.println(((Car) elantra).makeSound("vroom vroom"));
         elantra.initiatedInterfaceClass();
 
         User john = new User("John", 26, "IT");
         System.out.println(john.getIntro());
         john.walk();
-        john.talk();*/
-
+        john.talk();
+         */
 
         // -------------------------------------------------------------------------------------->
 

@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 
@@ -13,9 +16,10 @@ import java.util.stream.Stream;
 public class StreamApi {
 
     public static void main(String[] args) {
-
         StreamApi streamApi = new StreamApi();
 
+
+        args.toString();
 
         // immutable
         // List<Integer> arrayList = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8);
@@ -52,7 +56,15 @@ public class StreamApi {
         }).toArray(String[]::new);
         System.out.println(Arrays.toString(strings));
 
+        Predicate<Integer> predicate = new Predicate<Integer>() {
+            @Override
+            public boolean test(Integer num) {
+                return num == 2;
+            }
+        };
 
+        System.out.println(Stream.of(1,2,3,2,4).filter(predicate).toList());
+        System.out.println(Stream.of(1,2,3,2,4).filter((num) -> num == 2).toList());
 
 
         Integer[] integers = {12, 32, 123, 432, 923, 129, 37 ,1, 38, 18};
@@ -62,7 +74,26 @@ public class StreamApi {
 
 
 
+        Function<String,String> f1=new Function<String, String>() {
+            @Override
+            public String apply(String s) {
+                return "Hey jaani "+ s;
+            }
+        };
 
+        List<String> stringList = Arrays.stream(strings).map((str) -> "Hey jaani "+ str).toList();
+        // List<String> stringList = Arrays.stream(strings).map(f1).toList();
+        // List<String> stringList = Arrays.stream(strings).map(streamApi::myApply).toList();
+
+       System.out.println(stringList);
+
+
+    }
+
+
+
+    public String myApply(String s) {
+        return "Hey jaani "+ s;
     }
 
 
